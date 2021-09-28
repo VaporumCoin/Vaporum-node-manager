@@ -28,7 +28,7 @@ Check out [ElextrumX Dashboard](https://github.com/Mirobit/electrumx-dashboard) 
 
 ## Requirements
 
-- Bitcoin Core 0.19.0.1+
+- [Komodo Daemon](https://github.com/KomodoPlatform/komodo) 0.7.1+ or [Komodo-Qt (KomodoOcean)](https://github.com/DeckerSU/KomodoOcean)
 - Web Server (Apache, Nginx, PHP Server)
 - PHP 7.0.0+
   - curl extension
@@ -37,7 +37,7 @@ Check out [ElextrumX Dashboard](https://github.com/Mirobit/electrumx-dashboard) 
 ## Installation
 
 1. Clone the repository.
-2. Make sure `bitcoind` (`-daemon`) is running. If you use `bitcoin-qt` set `server=1` in the `komodo.conf` file.
+2. Make sure `komodod` (`-daemon`) is running. If you use `komodo-qt` set `server=1` in the `komodo.conf` file.
 3. Copy `src/Config.sample.php` and remove `.sample`. Open `src/Config.php` and enter your Bitcoin Core RPC credentials and set the KNM password.
 
 ### Manual setup
