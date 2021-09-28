@@ -2,22 +2,22 @@
 	<div class="panel panel-default">  
 		<div class="panel-body">
 			<div class="row tile_count">
-				<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<span class="count_top"><i class="fa fa-money"></i> Balance</span>
 					<div class="count"><?= number_format($content['wallet']["balance"],8) ?></div>
 				</div>
-				<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<span class="count_top"><i class="fa fa-long-arrow-right"></i> Unconfirmed Balance</span>
 					<div class="count"><?= number_format($content['wallet']["unconfirmed_balance"],8) ?></div>
 				</div>
-				<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<span class="count_top"><i class="fa fa-clock-o"></i> Immature Balance</span>
 					<div class="count"><?= number_format($content['wallet']["immature_balance"],8) ?></div>
 				</div>
-				<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+				<!-- <div class="col-md-1 col-sm-3 col-xs-5 tile_stats_count">
 					<span class="count_top"><i class="fa fa-address-card-o"></i> Wallet Version</span>
 					<div class="count"><?= $content['wallet']["walletversion"] ?></div>
-				</div>
+				</div> -->
 				<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 					<span class="count_top"><i class="fa fa-database"></i> TXCount</span>
 					<div class="count"><?= $content['wallet']["txcount"] ?></div>
@@ -88,9 +88,10 @@
 													<span class="sr-only">Toggle Dropdown</span>
 												</button>
 												<ul class="dropdown-menu">
-												<li><a href="https://www.blockchain.com/btc/tx/<?= $utxo["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> Blockchain.com</a></li>
-												<li><a href="https://live.blockcypher.com/btc/tx/<?= $utxo["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> BlockCypher</a></li>
-												<li><a href="https://www.smartbit.com.au/tx/<?= $utxo["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> Smartbit</a></li>
+												<li><a href="https://kmdexplorer.io/tx/<?= $utxo["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> kmdexplorer.io</a></li>
+												<li><a href="https://explorer.kmd.sh/tx/<?= $utxo["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> explorer.kmd.sh</a></li>
+												<li><a href="https://kmd.explorer.dexstats.info/tx/<?= $utxo["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> kmd.explorer.dexstats.info</a></li>
+												<li><a href="https://komodod.com/t/<?= $utxo["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> komodod.com</a></li>
 												</ul>
 											</div>										   
 										</td> 

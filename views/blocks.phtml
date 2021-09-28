@@ -17,9 +17,10 @@
 					  <div class="count"><?= $content["totalSize"] ?> <small>MB</small></div>
 					  <span class="count_bottom"><span><?= $content["avgSize"] ?> </span> MB avg. block size</span>
 					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-					  <span class="count_top"><i class="fa fa-btc" style="color:orange;"></i> Total Fees</span>
-					  <div class="count"><?= $content["totalFees"] ?> <small>BTC</small></div>
+					<!-- <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"> -->
+					<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
+					  <span class="count_top"><i class="fa fa-money" style="color:orange;"></i> Total Fees</span>
+					  <div class="count"><?= $content["totalFees"] ?> <small>KMD</small></div>
 					  <span class="count_bottom"><span class="orange" ><?= $content["avgFee"] ?></span> avg. fees per block</span>
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -101,11 +102,11 @@
 													<span class="sr-only">Toggle Dropdown</span>
 											</button>
 											<ul class="dropdown-menu">
-												<li><a href="https://www.blockchain.com/btc/block/<?= $block["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> Blockchain.com</a></li>
-												<li><a href="https://live.blockcypher.com/btc/block/<?= $block["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> BlockCypher</a></li>
-												<li><a href="https://blockchair.com/bitcoin/block/<?= $block["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> Blockchair</a></li>
-												<li><a href="https://www.smartbit.com.au/block/<?= $block["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> Smartbit</a></li>
-												 </ul>
+												<li><a href="https://kmdexplorer.io/block/<?= $block["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> kmdexplorer.io</a></li>
+												<li><a href="https://explorer.kmd.sh/block/<?= $block["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> explorer.kmd.sh</a></li>
+												<li><a href="https://kmd.explorer.dexstats.info/block/<?= $block["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> kmd.explorer.dexstats.info</a></li>
+												<li><a href="https://komodod.com/b/<?= $block["hash"] ?>" target="_blank"><i class="fa fa-globe fa-lg" style="color:lightblue"></i> komodod.com</a></li>
+												</ul>
 											</div>										   
 								   </td>										   
 								  </tr>

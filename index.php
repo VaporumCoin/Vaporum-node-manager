@@ -373,14 +373,15 @@ if(empty($_GET) || $_GET['p'] == "main") {
 	}
 	$data = array('section' => 'blocks', 'title' => 'Blocks', 'content' => $content);
   
+// TODO: Enable forks page?
 // Forks Page 
-}elseif($_GET['p'] == "forks") {
-  try{
-    $content = createForksContent();
-	}catch(\Exception $e) {
-	   $error = $e->getMessage();
-	}
-	$data = array('section' => 'forks', 'title' => 'Forks', 'content' => $content);
+// }elseif($_GET['p'] == "forks") {
+//   try{
+//     $content = createForksContent();
+// 	}catch(\Exception $e) {
+// 	   $error = $e->getMessage();
+// 	}
+// 	$data = array('section' => 'forks', 'title' => 'Forks', 'content' => $content);
   
 // Settings Page	
 }elseif($_GET['p'] == "settings") {

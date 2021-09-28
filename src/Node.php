@@ -58,13 +58,16 @@ class Node {
 		$blockchainInfo = $bitcoind->getblockchaininfo();
 		$miningInfo = $bitcoind->getmininginfo();
 		$tInfo = $bitcoind->getnettotals();
-		$uptimeInfo = $bitcoind->uptime();
-		
+
+		//$uptimeInfo = $bitcoind->uptime(); // TODO: use another way to obtain node uptime
+		$uptimeInfo = 0;
+
 		$this->blockHeight = checkInt($blockchainInfo["blocks"]);
 		$this->pruMode = checkBool($blockchainInfo["pruned"]);
 		$this->chain = ucfirst(htmlspecialchars($blockchainInfo["chain"]));
 		//Get active networks
 		$networks =$networkInfo["networks"];
+		// var_dump($networks);
 		foreach($networks as $network){
 			if($network["name"] === "ipv4"){
 				$this->ipv4 = ($network["reachable"] ? true : false);
@@ -102,10 +105,11 @@ class Node {
 		if(isset($networkInfo["localservicesnames"])) {
 			$this->services = formatServices($networkInfo["localservicesnames"]);
 		} else {
-			$this->services = getServices($networkInfo["localservices"]);
+			$this->services = getServices2($networkInfo["localservices"]);
 		}
 
-		$this->localRelay = checkBool($networkInfo["localrelay"]);
+		//$this->localRelay = checkBool($networkInfo["localrelay"]);
+		$this->localRelay = false;
 		$this->timeOffset = checkInt($networkInfo["timeoffset"]);
 		$this->port = checkInt($networkInfo["localaddresses"][0]["port"] ?? 0);
 		$this->cTime = getDateTime($tInfo["timemillis"]/1000);
@@ -113,20 +117,27 @@ class Node {
 		//Mempool
 		$this->mempoolTx = checkInt($mempoolInfo["size"]);
 		$this->mempoolSize =  round(checkInt($mempoolInfo["bytes"])/1000000,1);
-		$this->mempoolMinFee = checkInt($mempoolInfo["mempoolminfee"]);
+		//$this->mempoolMinFee = checkInt($mempoolInfo["mempoolminfee"]);
+		$this->mempoolMinFee = 0;
 		$this->mempoolUsage = bytesToMb($mempoolInfo["usage"]);
-		$this->maxMempool = bytesToMb($mempoolInfo["maxmempool"]);
+		//$this->maxMempool = bytesToMb($mempoolInfo["maxmempool"]);
+		$this->maxMempool = 300;
 		$this->mempoolUsageP = calcMpUsage($this->mempoolUsage,$this->maxMempool);
 		$this->mempoolLimited = checkMemPoolLimited($this->mempoolMinFee, $this->minRelayFee);
 		// Traffic
 		$this->tIn = round(bytesToMb($tInfo["totalbytesrecv"])/1000,2);
 		$this->tOut = round(bytesToMb($tInfo["totalbytessent"])/1000,2);
 		$this->tTotal = $this->tIn + $this->tOut;
-		$this->tLimitSet = getTrafficLimitSet($tInfo["uploadtarget"]["target"]);
-		$this->tLimited = checkBool($tInfo["uploadtarget"]["target_reached"]);
-		$this->tMax = bytesToGb($tInfo["uploadtarget"]["target"]);
-		$this->tUsed = round($this->tMax - bytesToGb($tInfo["uploadtarget"]["bytes_left_in_cycle"]), 1);
-		$this->tTimeLeft = round(checkInt($tInfo["uploadtarget"]["time_left_in_cycle"])/3600, 1); // In minutes
+		// $this->tLimitSet = getTrafficLimitSet($tInfo["uploadtarget"]["target"]);
+		// $this->tLimited = checkBool($tInfo["uploadtarget"]["target_reached"]);
+		// $this->tMax = bytesToGb($tInfo["uploadtarget"]["target"]);
+		$this->tLimitSet = false;
+		$this->tLimited = false;
+		$this->tMax = 0;
+		//$this->tUsed = round($this->tMax - bytesToGb($tInfo["uploadtarget"]["bytes_left_in_cycle"]), 1);
+		$this->tUsed = round($this->tMax, 1);
+		//$this->tTimeLeft = round(checkInt($tInfo["uploadtarget"]["time_left_in_cycle"])/3600, 1); // In minutes
+		$this->tTimeLeft = 0; // In minutes
 		if($this->tLimitSet){
 			$this->tLimitP = ceil(($this->tUsed/$this->tMax)*100);
 		}
@@ -136,10 +147,13 @@ class Node {
 		
 		$blockInfo = $bitcoind->getblock($blockchainInfo["bestblockhash"]);
 		$this->bHeightAgo = round((time()-checkInt($blockInfo["time"]))/60, 1);
-		$this->bcSize = bytesToGb($blockchainInfo["size_on_disk"], 1);
+		//$this->bcSize = bytesToGb($blockchainInfo["size_on_disk"], 1);
+		$this->bcSize = 0;
 		$this->diff = checkInt($blockchainInfo["difficulty"]);
-		$this->hashRate = round(checkInt($miningInfo["networkhashps"])/1000000000000000000,3);
-		$this->mNetTime = getDateTime($blockchainInfo["mediantime"]);
+		//$this->hashRate = round(checkInt($miningInfo["networkhashps"])/1000000000000000000,3);
+		$this->hashRate = round(checkInt($miningInfo["networkhashps"])/1000000,3);
+		//$this->mNetTime = getDateTime($blockchainInfo["mediantime"]);
+		$this->mNetTime = 0;
 		// Blockchain -> Soft forks
 		$this->softForks = checkSoftFork($blockchainInfo["softforks"]);		
 	}

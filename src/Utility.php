@@ -251,8 +251,9 @@ function checkMemPoolLimited($memPoolFee, $relayTxFee){
 
 function checkSoftFork($softForks){
 	foreach($softForks as $name => &$sf){
-		if($sf['type'] === 'bip9' && $sf['bip9']['status'] === "started"){
-			if(!preg_match("/[A-Za-z0-9 ]{2,25}/", $name)){
+		// TODO: make softforks visible in web ui (we should analyze `id` also)
+		if(array_key_exists('type',$sf) && $sf['type'] === 'bip9' && $sf['bip9']['status'] === "started"){
+		if(!preg_match("/[A-Za-z0-9 ]{2,25}/", $name)){
 				unset($softForks[$name]);
 				continue;
 			}

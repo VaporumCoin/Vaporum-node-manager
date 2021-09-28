@@ -34,7 +34,7 @@ class jsonRPCClient
      * @param string $host
      * @param int $port
      */
-    public function __construct($username, $password, $host = 'localhost', $port = 8332)
+    public function __construct($username, $password, $host = 'localhost', $port = 7771)
     {
         $this->username      = $username;
         $this->password      = $password;

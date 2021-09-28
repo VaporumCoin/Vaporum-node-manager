@@ -1,11 +1,11 @@
-# Bitcoin Node Manager Changelog
+# Komodo Node Manager Changelog
 
 ## 1.3.0 - 2021-02-23
 
 This release brings proxy support und improves the docker support.
 
-- [**New**] BNM can connect through a proxy to the Bitcoin Core RPC
-- [**Improved**] You no longer need to set a password for BNM
+- [**New**] KNM can connect through a proxy to the Bitcoin Core RPC
+- [**Improved**] You no longer need to set a password for KNM
 - [**Improved**] `txindex=1` is no longer required
 - [**Improved**] Docker documentation
 - [**Improved**] Tor address styling
@@ -18,7 +18,7 @@ This release brings proxy support und improves the docker support.
 
 The release is important for the compatibility with Bitcoin Core 0.21.0
 
-- [**New**] You can now run BNM via Docker Compose (see the README)
+- [**New**] You can now run KNM via Docker Compose (see the README)
 - [**Improved**] See if a peer is incoming our outgoing (mouseover IP)
 - [**Improved**] Moved ping column to IP column (mouseover)
 - [**Improved**] Detect if peers support Compact Filters

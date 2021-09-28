@@ -110,10 +110,10 @@
 				<div class="x_content" style="padding-bottom:2px">
 				  <table class="mempooltable">
 					  <tr><td style="width:50%;"><i class="fa fa-clone fa-fw"></i> Chain </td><td> <span class="badge"><?= $content['node']->chain ?></span></td></tr>
-					  <tr><td><i class="fa fa-hdd-o fa-fw"></i> Size </td><td> <?= $content['node']->bcSize ?> GB</td></tr>
+					  <!-- <tr><td><i class="fa fa-hdd-o fa-fw"></i> Size </td><td> <?= $content['node']->bcSize ?> GB</td></tr> -->
 					  <tr><td><i class="fa fa-key fa-fw"></i> Difficulty </td><td> <?= $content['node']->diff ?></td></tr>
-					  <tr><td><i class="fa fa-cogs fa-fw"></i> Hashrate </td><td> <?= $content['node']->hashRate ?> EH/s</td></tr>
-					  <tr><td><i class="fa fa-clock-o fa-fw"></i> Mediantime </td><td> <?= $content['node']->mNetTime ?></td></tr>
+					  <tr><td><i class="fa fa-cogs fa-fw"></i> Hashrate </td><td> <?= $content['node']->hashRate ?> MSol/s</td></tr>
+					  <!-- <tr><td><i class="fa fa-clock-o fa-fw"></i> Mediantime </td><td> <?= $content['node']->mNetTime ?></td></tr> -->
 				  </table>
 				</div>
 			  </div>
@@ -214,7 +214,7 @@
 
 					<li><a class="close-link"><i class="fa fa-close"></i></a></li>
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-					<li><a><i class="fa fa-question-circle-o" data-toggle="tooltip" data-html="true" data-placement="left" title="BNM will only check the country/isp for peers that are older than 5 minutes."></i></a></li>
+					<li><a><i class="fa fa-question-circle-o" data-toggle="tooltip" data-html="true" data-placement="left" title="KNM will only check the country/isp for peers that are older than 5 minutes."></i></a></li>
           <?php if(isset($content['api'])) { ?><li><a><i class="fa fa-refresh" data-toggle="tooltip" data-html="true" data-placement="left" title="<?= $content["api"]["callc"] ?> call(s) to API with <?= $content["api"]["ipc"] ?> new ip(s)."></i></a></li><?php }?>
 
 				  </ul>

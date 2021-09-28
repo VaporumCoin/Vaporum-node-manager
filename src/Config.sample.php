@@ -5,16 +5,16 @@
   class Config {
 
     /* 
-    Bitcoin Node Manager (BNM) password for login. You should additionally change the name of
-    BNM folder to something unique, if accessible via the web. 
+    Komodo Node Manager (KNM) password for login. You should additionally change the name of
+    KNM folder to something unique, if accessible via the web.
     Leave empty to disable it (only do this on a local setup that can't be reached from the outside).
      */
     const PASSWORD = "LOGIN-PASSWORD";
     /* 
-    IP that can access BNM:
-      "": any IP can access BNM
-      "localhost": only localhost (IPv4/v6) can access BNM)
-      "84.12.32.297": localhost and the specific IP (e.g. 84.12.32.297) can access BNM
+    IP that can access KNM:
+      "": any IP can access KNM
+      "localhost": only localhost (IPv4/v6) can access KNM)
+      "84.12.32.297": localhost and the specific IP (e.g. 84.12.32.297) can access KNM
     */
     const ACCESS_IP = "";
 
@@ -26,11 +26,11 @@
         'sudo ufw allow in on docker0 from 172.17.0.0/16 to any port 8332')
     */
     const RPC_IP = "127.0.0.1";
-    // RPC port, usually 8332 if not changed in bitcoin.conf
-    const RPC_PORT = "8332";
-    // RPC username / rpcauth specified in bitcoin.conf
+    // RPC port, usually 8332 if not changed in komodo.conf
+    const RPC_PORT = "7771";
+    // RPC username / rpcauth specified in komodo.conf
     const RPC_USER = "USERNAME";
-    // RPC password / rpcauth specified in bitcoin.conf
+    // RPC password / rpcauth specified in komodo.conf
     const RPC_PASSWORD = "PASSWORD";
 
     /*

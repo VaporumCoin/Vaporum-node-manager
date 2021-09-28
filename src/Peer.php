@@ -48,10 +48,12 @@ class Peer{
     if(isset($peer["servicesnames"])) {
       $this->services = formatServices($peer["servicesnames"]);
     } else {
-      $this->services = getServices($peer["services"]);
+      $this->services = getServices2($peer["services"]);
     }
     $this->servicesOriginal = checkServiceString($peer["services"]);
-    $this->relayTx = checkBool($peer["relaytxes"]);
+    //var_dump($peer);
+    //$this->relayTx = checkBool($peer["relaytxes"]);
+    $this->relayTx = true;
     if(isset($peer["feefilter"])){
       $this->feeFilter = checkInt($peer["feefilter"]);
     }else{
@@ -92,8 +94,10 @@ class Peer{
       $this->whitelisted = (count($peer["permissions"]) > 0) ? true : false;
     }
 
-    $this->bytessentPerMsg = checkArray($peer["bytessent_per_msg"]);
-    $this->bytesrecvPerMsg = checkArray($peer["bytesrecv_per_msg"]);		
+    // $this->bytessentPerMsg = checkArray($peer["bytessent_per_msg"]);
+    // $this->bytesrecvPerMsg = checkArray($peer["bytesrecv_per_msg"]);
+    $this->bytessentPerMsg = [];
+    $this->bytesrecvPerMsg = [];
   }			
 }
 ?>

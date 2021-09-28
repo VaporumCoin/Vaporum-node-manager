@@ -86,7 +86,7 @@ function createBanListContent(){
 
 	// List of all banned peers
 	$content['banList'] = $banlist;
-	
+
 
 	return $content;
 }
@@ -106,14 +106,25 @@ function createBlocksContent(){
 		$content["blocks"][$block["height"]]["hash"] = $block["hash"];
 		$content["blocks"][$block["height"]]["size"] = round($block["size"]/1000000,2);
 		$content["totalSize"] += $block["size"];
-		$content["blocks"][$block["height"]]["versionhex"] = $block["versionHex"];
-		$content["blocks"][$block["height"]]["voting"] = getVoting($block["versionHex"]);
-		$content["blocks"][$block["height"]]["asicboost"] = checkAsicBoost($block["versionHex"]);
+		// $content["blocks"][$block["height"]]["versionhex"] = $block["versionHex"];
+		// $content["blocks"][$block["height"]]["voting"] = getVoting($block["versionHex"]);
+		// $content["blocks"][$block["height"]]["asicboost"] = checkAsicBoost($block["versionHex"]);
+		// $content["blocks"][$block["height"]]["time"] = getDateTime($block["time"]);
+		// $content["blocks"][$block["height"]]["mediantime"] = getDateTime($block["mediantime"]);
+
+		$content["blocks"][$block["height"]]["versionhex"] = 4;
+		$content["blocks"][$block["height"]]["voting"] = [];
+		$content["blocks"][$block["height"]]["asicboost"] = false;
 		$content["blocks"][$block["height"]]["time"] = getDateTime($block["time"]);
-		$content["blocks"][$block["height"]]["mediantime"] = getDateTime($block["mediantime"]);
+		$content["blocks"][$block["height"]]["mediantime"] = 0;
+
 		$content["blocks"][$block["height"]]["timeago"] = round((time() - $block["time"])/60);
 		$content["blocks"][$block["height"]]["coinbasetx"] = $block["tx"][0];
-		$coinbaseTx = $bitcoind->getrawtransaction($block["tx"][0], 1, $block["hash"]);
+
+
+		//$coinbaseTx = $bitcoind->getrawtransaction($block["tx"][0], 1, $block["hash"]);
+		$coinbaseTx = $bitcoind->getrawtransaction($block["tx"][0], 1);
+
 		if($coinbaseTx["vout"][0]["value"] != 0){
 			$content["blocks"][$block["height"]]["fees"] = round($coinbaseTx["vout"][0]["value"] - (50 / pow(2, floor($block["height"] / 210000))), 4) ;
 		}else{
@@ -221,7 +232,7 @@ function createMempoolContent(){
 
 function createWalletContent(){
 	global $bitcoind, $error;
-	
+
 	try{
 		$unspents = $bitcoind->listunspent();
 		$walletInfo = $bitcoind->getwalletinfo();
@@ -230,28 +241,31 @@ function createWalletContent(){
 		return "";
 	}
 
-	$content['wallet']["walletversion"] = checkInt($walletInfo["walletversion"]);	
-	$content['wallet']["balance"] = checkInt($walletInfo["balance"]);	
-	$content['wallet']["unconfirmed_balance"] = checkInt($walletInfo["unconfirmed_balance"]);	
-	$content['wallet']["immature_balance"] = checkInt($walletInfo["immature_balance"]);	
-	$content['wallet']["txcount"] = checkInt($walletInfo["txcount"]);	
-	
+	$content['wallet']["walletversion"] = checkInt($walletInfo["walletversion"]);
+	$content['wallet']["balance"] = checkInt($walletInfo["balance"]);
+	$content['wallet']["unconfirmed_balance"] = checkInt($walletInfo["unconfirmed_balance"]);
+	$content['wallet']["immature_balance"] = checkInt($walletInfo["immature_balance"]);
+	$content['wallet']["txcount"] = checkInt($walletInfo["txcount"]);
+
 	$i = 0;
 
 	foreach($unspents as $unspent){
 		$content["utxo"][$i]["hash"] = $unspent["txid"];
 		$content["utxo"][$i]["vout"] = $unspent["vout"];
 		$content["utxo"][$i]["address"] = $unspent["address"];
-		$content["utxo"][$i]["label"] = $unspent["label"];
+		// $content["utxo"][$i]["label"] = $unspent["label"];
+		$content["utxo"][$i]["label"] = "";
 		$content["utxo"][$i]["amount"] = $unspent["amount"];
 		$content["utxo"][$i]["confs"] = $unspent["confirmations"];
 		$content["utxo"][$i]["spendable"] = $unspent["spendable"];
-		$content["utxo"][$i]["solvable"] = $unspent["solvable"];
-		$content["utxo"][$i]["safe"] = $unspent["safe"];
+		// $content["utxo"][$i]["solvable"] = $unspent["solvable"];
+		// $content["utxo"][$i]["safe"] = $unspent["safe"];
+		$content["utxo"][$i]["solvable"] = true;
+		$content["utxo"][$i]["safe"] = true;
 
 		$i++;
 	}
-	
+
 	return $content;
 }
 ?>
