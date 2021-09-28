@@ -1,6 +1,8 @@
 # Komodo Node Manager
 
-![](https://user-images.githubusercontent.com/13236924/102018547-2c11e800-3d6e-11eb-96bb-e0bccf76977e.png)
+![](./images/komodo-node-manager-01.png)
+
+**NB!** This is a fork of [Bitcoin Node Manager](https://github.com/Mirobit/bitcoin-node-manager) project, modified for using with [Komodo](https://github.com/KomodoPlatform/komodo) daemon.
 
 Komodo Node Manager (KNM) is a lightweight dashboard and control system for your Komodo Node.
 
