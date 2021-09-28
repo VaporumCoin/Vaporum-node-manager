@@ -1,8 +1,8 @@
 {
-  "name": "mirobit/bitcoin-node-manager",
-  "description": "Lightweight dashboard and control system for bitcoin nodes",
+  "name": "DeckerSU/komodo-node-manager",
+  "description": "Lightweight dashboard and control system for komodo nodes",
   "keywords": [
-    "bitcoin",
+    "komodo",
     "dashboard",
     "manager"
   ],
@@ -11,10 +11,14 @@
     {
       "name": "Michael Rotarius",
       "homepage": "https://github.com/Mirobit/"
+    },
+    {
+      "name": "DeckerSU",
+      "homepage": "https://github.com/DeckerSU/"
     }
   ],
   "support": {
-    "issues": "https://github.com/Mirobit/bitcoin-node-manager/issues"
+    "issues": "https://github.com/DeckerSU/komodo-node-manager/issues"
   },
   "type": "project",
   "require": {
