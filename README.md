@@ -51,7 +51,7 @@ Check out [ElextrumX Dashboard](https://github.com/Mirobit/electrumx-dashboard) 
 The VNM folder is mounted as volume in Docker. This way you can edit `src/Config.php` and update VNM (`git pull`) at any time without connecting to the container.
 
 4. Change the RPC IP in `src/Config.php` to the docker network interface IP.
-5. Run either `docker-compose up -d` or `docker run -d -p 8000:80 --name KNM -v ${PWD}:/var/www/html php:7.4-apache` in the VNM folder.
+5. Run either `docker-compose up -d` or `docker run -d -p 8000:80 --name VNM -v ${PWD}:/var/www/html php:7.4-apache` in the VNM folder.
 6. Add the following to your `VPRM.conf`:
 ```
 rpcbind=127.0.0.1
