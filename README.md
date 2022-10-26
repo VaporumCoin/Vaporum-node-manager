@@ -38,11 +38,11 @@ Check out [ElextrumX Dashboard](https://github.com/Mirobit/electrumx-dashboard) 
 
 1. Clone the repository.
 2. Make sure `vaporumd` (`-daemon`) is running. If you use `vaporum-qt` set `server=1` in the `VPRM.conf` file.
-3. Copy `src/Config.sample.php` and remove `.sample`. Open `src/Config.php` and enter your Bitcoin Core RPC credentials and set the KNM password.
+3. Copy `src/Config.sample.php` and remove `.sample`. Open `src/Config.php` and enter your Bitcoin Core RPC credentials and set the VNM password.
 
 ### Manual setup
 
-4. Make sure the VNM folder is in your web servers folder (e.g. `/var/www/html/`). If the server is publicly accessible, I recommend renaming the KNM folder to something unique. Although KNM is password protected and access can be limited to a specific IP, there can be security flaws and bugs.
+4. Make sure the VNM folder is in your web servers folder (e.g. `/var/www/html/`). If the server is publicly accessible, I recommend renaming the VNM folder to something unique. Although VNM is password protected and access can be limited to a specific IP, there can be security flaws and bugs.
 5. Check that the server (e.g. `www-data`) has access (read and write) to the data folder (git will change the ownership by default).
 6. Open the URL to the folder in your browser and login with the password chosen in `src/Config.php`.
 
