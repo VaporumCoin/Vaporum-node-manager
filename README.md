@@ -1,10 +1,10 @@
-# Komodo Node Manager
+# Vaporum Node Manager
 
 ![](./images/komodo-node-manager-01.png)
 
 **NB!** This is a fork of [Bitcoin Node Manager](https://github.com/Mirobit/bitcoin-node-manager) project, modified for using with [Komodo](https://github.com/KomodoPlatform/komodo) daemon.
 
-Komodo Node Manager (KNM) is a lightweight dashboard and control system for your Komodo Node.
+Vaporum Node Manager (VNM) is a lightweight dashboard and control system for your Vaporum Node.
 
 Check out [ElextrumX Dashboard](https://github.com/Mirobit/electrumx-dashboard) if you run an Electrumx Server.
 
@@ -28,7 +28,7 @@ Check out [ElextrumX Dashboard](https://github.com/Mirobit/electrumx-dashboard) 
 
 ## Requirements
 
-- [Komodo Daemon](https://github.com/KomodoPlatform/komodo) 0.7.1+ or [Komodo-Qt (KomodoOcean)](https://github.com/DeckerSU/KomodoOcean)
+- [Vaporum Daemon](https://github.com/VaporumCoin/VaporumCoin-daemon) 0.7.1+ or [Vaporum-Qt (VaporumOcean)](https://github.com/VaporumCoin/VaporumOcean-Beta)
 - Web Server (Apache, Nginx, PHP Server)
 - PHP 7.0.0+
   - curl extension
@@ -37,33 +37,33 @@ Check out [ElextrumX Dashboard](https://github.com/Mirobit/electrumx-dashboard) 
 ## Installation
 
 1. Clone the repository.
-2. Make sure `komodod` (`-daemon`) is running. If you use `komodo-qt` set `server=1` in the `komodo.conf` file.
+2. Make sure `vaporumd` (`-daemon`) is running. If you use `vaporum-qt` set `server=1` in the `VPRM.conf` file.
 3. Copy `src/Config.sample.php` and remove `.sample`. Open `src/Config.php` and enter your Bitcoin Core RPC credentials and set the KNM password.
 
 ### Manual setup
 
-4. Make sure the KNM folder is in your web servers folder (e.g. `/var/www/html/`). If the server is publicly accessible, I recommend renaming the KNM folder to something unique. Although KNM is password protected and access can be limited to a specific IP, there can be security flaws and bugs.
+4. Make sure the VNM folder is in your web servers folder (e.g. `/var/www/html/`). If the server is publicly accessible, I recommend renaming the KNM folder to something unique. Although KNM is password protected and access can be limited to a specific IP, there can be security flaws and bugs.
 5. Check that the server (e.g. `www-data`) has access (read and write) to the data folder (git will change the ownership by default).
 6. Open the URL to the folder in your browser and login with the password chosen in `src/Config.php`.
 
 ### Docker
 
-The KNM folder is mounted as volume in Docker. This way you can edit `src/Config.php` and update KNM (`git pull`) at any time without connecting to the container.
+The VNM folder is mounted as volume in Docker. This way you can edit `src/Config.php` and update VNM (`git pull`) at any time without connecting to the container.
 
 4. Change the RPC IP in `src/Config.php` to the docker network interface IP.
-5. Run either `docker-compose up -d` or `docker run -d -p 8000:80 --name KNM -v ${PWD}:/var/www/html php:7.4-apache` in the KNM folder.
-6. Add the following to your `komodo.conf`:
+5. Run either `docker-compose up -d` or `docker run -d -p 8000:80 --name KNM -v ${PWD}:/var/www/html php:7.4-apache` in the VNM folder.
+6. Add the following to your `VPRM.conf`:
 ```
 rpcbind=127.0.0.1
 rpcbind=172.17.0.1
 rpcallowip=0.0.0.0/0
 ```
-7. KNM should now be accessible under http://server-ip:8000.
+7. VNM should now be accessible under http://server-ip:8000.
 
 ## Security
 
 - All pages and control functionality are only accessible for logged-in users. The only exception is if you use the Rules cron job functionality. But a password based token is required and the functionality is only able to apply rules.
-- Access to KNM is by default limited to localhost. This can be expanded to a specific IP or disabled. If disabled, make sure to protect the KNM folder (.htaccess or rename it to something unique that an attacker will not guess). An attacker could "guess" your password, since there is no build-in brute force protection.
+- Access to VNM is by default limited to localhost. This can be expanded to a specific IP or disabled. If disabled, make sure to protect the VNM folder (.htaccess or rename it to something unique that an attacker will not guess). An attacker could "guess" your password, since there is no build-in brute force protection.
 - The `data` folder contains your rules, rule logs and geo information about your peers. Make sure to protect (e.g. `chmod -R 700 data`) peer information if your web server is publicly accessible. The previously mentioned IP protection doesn't work here. If you use `Apache` you are fine, since the folder is protected with `.htaccess` (make sure `AllowOverride All` is set in your Apache config file).
 
 ## Roadmap
